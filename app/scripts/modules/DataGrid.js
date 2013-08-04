@@ -137,6 +137,22 @@ define( [
 					} );
 					// Show the table (we can do this each time, no performance concerns with this)
 					this.$el.addClass( 'complete' ).children( 'table.data-table').show();
+					// By now, any models that have been rendered that contained a minus number have populated the colorCols array
+					if ( config.colorCols ) {
+						// Create CSS rules rather than changing each element using .css() (more performant)
+						var styles = [];
+						_.each( config.colorCols, function ( element, index, list ) {
+							styles.push( ".data-table tbody tr td[headers=" + element + "] { color: #0aa000 !important; }\n" );
+							styles.push( ".data-table tbody tr td[headers=" + element + "].red { color: #aa0000 !important; }\n" );
+						} );
+						this.embedCSS( styles );
+					}
+				},
+				// Add CSS to the document
+				embedCSS : function ( css ) {
+					var head = $( 'head' ),
+						style = $( '<style>' ).attr( 'type', 'text/css' ).text( css.join( '' ) );
+					head.append( style );
 				} 
 			} ),
 	
@@ -205,12 +221,13 @@ define( [
 					// Because of the way Google builds the JSON, we have to *assume*
 					// that feed.entry.title.$t is our first table column. Bit rubbish.
 					// Call getDataType here, as it returns two values, but we only want to call it once
-					var temp = this.getDataType( this.get( 'title' ).$t );
+					var temp = this.getDataType( this.get( 'title' ).$t, this.formatIdName( config.headings[ 0 ] ) );
 					// Set up our first column
 					cells[ this.formatIdName( config.headings[ 0 ] ) ] = {
 						'value' : this.get( 'title' ).$t,
 						'type' : temp.type,
-						'sort' : temp.sort
+						'sort' : temp.sort,
+						'minus' : temp.minus
 					}
 					// The rest of the columns are contained in feed.entry.content.$t! So parse that.
 					var values = this.parseContent( this.get( 'content' ).$t );
@@ -224,7 +241,7 @@ define( [
 					return str.replace( " ", "" ).toLowerCase();
 				},
 				// Utility function to determine the data type
-				getDataType : function ( data ) {
+				getDataType : function ( data, title ) {
 					// Assume it's a string...
 					var type = 'string',
 						sort = data,
@@ -232,8 +249,21 @@ define( [
 					// ... unless it matches the regex
 					if ( !_.isNull( data.match(/£?[0-9]+[\.,]?[0-9,\.]*%?/) ) ) {
 						type = 'int';
+						// I don't like this, but can't see how else to do it...
+						// If a column has a minus number, we're going to colour the values red (for minus numbers)
+						// and green (for plus numbers). So add the column name to our config, so we can style it
+						if ( data.charAt( 0 ) === '-' ) {
+							if ( config.colorCols ) {
+								if ( !_.contains( config.colorCols, title ) ) { 
+									config.colorCols.push( title );
+								}
+							} else {
+								config.colorCols = [ title ];
+							}
+							minus = true;
+						}
 						// Remove unwanted characters and store this so we can use it to sort and make sure it's sorted as a
-						// float rather than an int (or string) as we have minus numbers
+						// float rather than a string
 						sort = parseFloat( data.replace(/[,£%]/g,'') );
 					}
 					return {
@@ -253,12 +283,13 @@ define( [
 						// Split it again
 						var parts = element.split( ': '),
 							// Do this function here, so we only call it once
-							data = self.getDataType( parts[ 1 ] );
+							data = self.getDataType( parts[ 1 ], self.formatIdName( parts[ 0 ] ) );
 						// Build our cell object
 						cells[ self.formatIdName( parts[ 0 ] ) ] = {
 							'value' : parts[ 1 ],
 							'type' : data.type,
-							'sort' : data.sort
+							'sort' : data.sort,
+							'minus' : data.minus
 						}
 					} );
 					// Return all cells

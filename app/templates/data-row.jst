@@ -1,7 +1,8 @@
 <% _.each( cells, function ( value, key, list ) { %>
 	<% if ( _.contains( headings, key ) ) { 
 		var align = value.type === 'int' ? 'align-right' : ''; 
+		var color = !!value.minus ? 'red' : '';
 	%>
-		<td headers="<%= key %>" data-type="<%= value.type %>" data-sort-on="<%= value.sort %>" class="<%= align %> dg-<%= key %>"><%= value.value %></td>
+		<td headers="<%= key %>" data-type="<%= value.type %>" data-sort-on="<%= value.sort %>" class="<%= align %> dg-<%= key %> <%= color %>"><%= value.value %></td>
 	<% } %>
 <% } ) %>
