@@ -1,7 +1,0 @@
-<% _.each( cells, function ( value, key, list ) { %>
-	<% if ( _.contains( headings, key ) ) { 
-		var align = value.type === 'int' ? 'align-right' : ''; 
-	%>
-		<td headers="<%= key %>" data-type="<%= value.type %>" data-sort-on="<%= value.sort %>" class="<%= align %> dg-<%= key %>"><%= value.value %></td>
-	<% } %>
-<% } ) %>
