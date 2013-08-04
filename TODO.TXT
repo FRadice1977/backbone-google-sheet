@@ -1,0 +1,4 @@
+
+
+- The green/red colors for the change column
+- NOTES: Explain about 'marketcap', and also how we've 'hard coded' "Ticker" - might want to have that in the defaults or options? Also think about setting the table headers in the options?

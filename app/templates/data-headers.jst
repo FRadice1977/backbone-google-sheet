@@ -1,0 +1,6 @@
+<% _.each( items, function ( element, index, list ) { 
+	var className = index === 0 ? 'sort' : '',
+		dir = index === 0 ? 'asc' : '';
+%>
+	<th id="<%= ids[ index ] %>" class="<%= className %> <%= dir %>"><a href="#"><i class="icon icon-sort icon-left"></i><%= element %><i class="icon icon-sort icon-right"></i></a></th>
+<% } ) %>
