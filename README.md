@@ -1,7 +1,7 @@
 TR Tech Test
 ============
 
-A repo for a technical test.
+A repo for a technical test that I've just completed, for a client who will remain anonymous.
 
 Viewing the (results of the) test
 ---------------------------------
