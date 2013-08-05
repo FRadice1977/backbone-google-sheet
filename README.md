@@ -35,9 +35,9 @@ Notes
 
 	where:
 	
-	1.	*url* is the URL of the data resource.
-	2.	*containerEl* is the DOM element to inject the data table (should there be any data to display).
-	3.	*headings* is an array containing the column headings (see Column Headings below).
+1.	*url* is the URL of the data resource.
+2.	*containerEl* is the DOM element to inject the data table (should there be any data to display).
+3.	*headings* is an array containing the column headings (see Column Headings below).
 
 Column Headings
 ----------------------------------------------
