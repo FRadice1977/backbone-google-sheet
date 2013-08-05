@@ -44,7 +44,7 @@ Why do I specify the column headings in the code? It seems there are two way of 
 
 One of our required columns is 'Market Cap'. I'm pretty certain that there is no bulletproof way of knowing that the string 'marketcap' (contained in the returned data) should be formatted as 'Market Cap' - as opposed to 'Mark Etcap', 'Mar Ketcap', 'M.A.R.K.E.T Cap', or any other pattern. As a result, I took the decision to pass the column names in the initialisation block.
 
-Of course, this does have an added bonus - don't want to show one or more of the columns in the spreadsheet (perhaps those columns are no relevant to the content of your page or site)? Don't specify them in the initiasation block. There is logic in the code to ensure that a table cell is only rendered if it is associated with a passed header.
+Of course, this does have an added bonus - don't want to show one or more of the columns in the spreadsheet (perhaps those columns are not relevant to the content of your page or site)? Don't specify them in the initiasation block. There is logic in the code to ensure that a table cell is only rendered if it is associated with a passed header.
 
 Browsers
 -------------------
