@@ -31,6 +31,7 @@ Notes
 		containerEl : '#data-grid',
 		headings : [ 'Ticker', 'Industry', 'Market Cap', 'Price', 'Change', 'Volume' ] 
 	} );
+	````
 
 	where:
 
