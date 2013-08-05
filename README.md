@@ -25,6 +25,7 @@ Notes
 
 *   The table is initialised by calling the following:
 
+	````
 	new DataGrid( { 
 		url : 'https://spreadsheets.google.com/feeds/list/0AjbU8ta9j916dFBES3locHcxRGduQTEwNWMyeXVQU3c/1/public/basic?alt=json',
 		containerEl : '#data-grid',
@@ -53,7 +54,7 @@ There seemed no way to know that the *Change* column text should have extra CSS 
 
 	headings : [ 'Ticker : { 'color' : false }', 'Industry : { 'color' : false }', 'Market Cap : { 'color' : false }', 'Price : { 'color' : false }', 'Change : { 'color' : true }', 'Volume : { 'color' : false }' ], ...
 
-But then I felt I was going too far down the route of just specifying everything in the code - why not also pass the data type too? So - as the colours are very obviously a visual representation of positive and negative values - I took the decision to see if a column value's first character is a minus. If it is, we colour that column. Of course, this does mean that if all values happen to be positive, that column will be the default colour, and not green (as how would we differentiate that from the *Volume* column, for example). Not a nice solution, but it works.
+But then I felt I was going too far down the route of just specifying everything in the code - why not also pass the data type too? Or the default sort-by column? And so on. So - as the colours are very obviously a visual representation of positive and negative values - I took the decision to see if a column value's first character is a minus. If it is, we colour that column. Of course, this does mean that if all values happen to be positive, that column will be the default colour, and not green (as how would we differentiate that from the *Volume* column, for example). Not a nice solution, but it works.
 
 Browsers
 -------------------
