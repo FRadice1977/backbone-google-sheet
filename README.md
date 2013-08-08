@@ -1,7 +1,7 @@
 backbone-google-sheet
 =====================
 
-Originally a technical test that I completed for a prospective client, this is an example of using Backbone to fetch and display data from a public Google Sheet residing in my Google Drive. It then sorts the data by column, and also includes both row and *column* highlighting on hover.
+Originally a technical test that I completed for a prospective client, this is an example of using Backbone to fetch and display data from a public Google Sheet residing in my Google Drive. It works out the data type of each column, it sorts the data by column, and also includes both row and *column* highlighting on hover.
 
 Also uses jQuery and Underscore.
 
