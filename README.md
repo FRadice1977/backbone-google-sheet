@@ -1,16 +1,18 @@
-TR Tech Test
-============
+backbone-google-sheet
+=====================
 
-A repo for a technical test that I've just completed, for a client who will remain anonymous.
+Originally a technical test that I completed for a prospective client, this is an example of using Backbone to fetch and display data from a public Google Sheet residing in my Google Drive. It then sorts the data by column, and also includes both row and *column* highlighting on hover.
 
-Viewing the (results of the) test
+Also uses jQuery and Underscore.
+
+Viewing the example
 ---------------------------------
 
 Navigate to the following GitHub page in your browser of choice:
 
-[http://dannycallaghan.github.io/trtechtest/](http://dannycallaghan.github.io/trtechtest/ "TR Tech Test")
+[http://dannycallaghan.github.io/backbone-google-sheet/](http://dannycallaghan.github.io/backbone-google-sheet/ "backbone-google-sheet")
 
-Viewing the (results of the) test locally
+Viewing the example locally
 -----------------------------------------
 
 1.  Clone the repo, or download and extract the zip.
